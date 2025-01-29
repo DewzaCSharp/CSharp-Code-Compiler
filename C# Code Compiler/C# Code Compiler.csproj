@@ -6,6 +6,7 @@
     <RootNamespace>C__Code_Compiler</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyName>CCCompiler</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -17,7 +17,7 @@ class Program
         Console.WriteLine("\t\t\t\t[3] Default code");
         Console.WriteLine("\t\t\t\t[4] Exit");
         Console.WriteLine();
-
+        
         Console.Write($"root@Compiler:~#");
         string code;
         switch (Console.ReadKey().Key)
