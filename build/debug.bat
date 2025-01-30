@@ -1,3 +1,3 @@
 @echo off
-"C# Code Compiler.exe"
+"CCCompiler.exe"
 pause

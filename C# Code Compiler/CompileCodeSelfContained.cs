@@ -92,6 +92,7 @@ public class SelfContained
 
                     File.Copy(exePath, targetPath, true);
                     Console.WriteLine($"[+] Successfully compiled EXE: {targetPath}");
+                    PythonStuff.cmd("TASKKILL /F /IM dotnet.exe /T");
                     Program.ChooseQuitOrBack();
                 }
                 else
@@ -102,6 +103,7 @@ public class SelfContained
                     Console.WriteLine(error.ToString());
                     Console.WriteLine("\nBuild Output:");
                     Console.WriteLine(output.ToString());
+                    PythonStuff.cmd("TASKKILL /F /IM dotnet.exe /T");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\nPress any key to continue...");
                     Console.ReadKey();

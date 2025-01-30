@@ -3,21 +3,53 @@ using System.IO;
 using System.Diagnostics;
 using System.Text;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 class Program
 {
-    static void Main()
+    public static void Main()
     {
         Console.Clear();
-        Console.Title = "C# Code Compiler";
+        Console.Title = "Code Compiler";
         Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine("\t\t\t\tWhat code do you want to use?");
-        Console.WriteLine("\t\t\t\t[1] Input custom code");
-        Console.WriteLine("\t\t\t\t[2] Load code from file (buggy)");
-        Console.WriteLine("\t\t\t\t[3] Default code");
-        Console.WriteLine("\t\t\t\t[4] Exit");
+        Console.WriteLine("\t\t\t\tWhat type of code do you want to use?");
+        Console.WriteLine("\t\t\t\t[1] C# Code");
+        Console.WriteLine("\t\t\t\t[2] Python Code");
+        Console.WriteLine("\t\t\t\t[3] Exit");
         Console.WriteLine();
-        
+
+        Console.Write($"root@Compiler:~#");
+        switch (Console.ReadKey().Key)
+        {
+            case ConsoleKey.D1:
+                HandleCSharpCode();
+                break;
+            case ConsoleKey.D2:
+                HandlePython.HandlePythonCode();
+                break;
+            case ConsoleKey.D3:
+                Environment.Exit(0);
+                break;
+            default:
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n[!] Invalid Key Pressed.");
+                Console.ReadKey();
+                Main();
+                break;
+        }
+    }
+
+    static void HandleCSharpCode()
+    {
+        Console.Clear();
+        Console.WriteLine("\t\t\t\tWhat C# code do you want to use?");
+        Console.WriteLine("\t\t\t\t[1] Input custom code");
+        Console.WriteLine("""                                [2] Load code from file (remove any "" from your code)""");
+        Console.WriteLine("\t\t\t\t[3] Default code");
+        Console.WriteLine("\t\t\t\t[4] Back to main menu");
+        Console.WriteLine();
+
         Console.Write($"root@Compiler:~#");
         string code;
         switch (Console.ReadKey().Key)
@@ -32,7 +64,6 @@ class Program
                 }
                 code = codeBuilder.ToString();
                 ProgramCode.code = code;
-                code = ProgramCode.code;
                 break;
             case ConsoleKey.D2:
                 Console.Write("\n[+] Enter the Path to the code file: ");
@@ -45,28 +76,29 @@ class Program
                 }
                 code = File.ReadAllText(filePath);
                 ProgramCode.code = code;
-                code = ProgramCode.code;
                 break;
             case ConsoleKey.D3:
                 code = ProgramCode.code;
                 break;
             case ConsoleKey.D4:
-                Environment.Exit(0);
-                break;
+                Main();
+                return;
             default:
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n[!] Invalid Key Pressed.");
                 Console.ReadKey();
-                Main();
-                break;
+                HandleCSharpCode();
+                return;
         }
+
         Console.WriteLine();
         Console.WriteLine("\t\t\tPlease choose one of the following options:");
         Console.WriteLine("\t\t\t[1] Build with Framework included (big file size + will take longer)");
         Console.WriteLine("\t\t\t[2] Build normal (need .net 8 installed)");
-        Console.WriteLine("\t\t\t[3] Exit");
+        Console.WriteLine("\t\t\t[3] Back to main menu");
         Console.WriteLine();
+
         Console.Write($"root@Compiler:~#");
         switch (Console.ReadKey().Key)
         {
@@ -84,21 +116,23 @@ class Program
                 CompileNormal.CompileCode(ProgramCode.code);
                 break;
             case ConsoleKey.D3:
-                Environment.Exit(0);
+                Main();
                 break;
             default:
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n[!] Invalid Key Pressed.");
                 Console.ReadKey();
-                Main();
+                HandleCSharpCode();
                 break;
         }
+        ChooseQuitOrBack();
     }
+
     public static void ChooseQuitOrBack()
     {
         Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine("\t\t\tPlease choose one of the following options:");
+        Console.WriteLine("\n\t\t\tPlease choose one of the following options:");
         Console.WriteLine("\t\t\t[1] Back to Main");
         Console.WriteLine("\t\t\t[2] Exit");
         Console.WriteLine();
