@@ -12,6 +12,8 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+/build/sign.bat
+/build/debug.bat
 
 # Mono auto generated files
 mono_crash.*

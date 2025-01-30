@@ -7,6 +7,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>CCCompiler</AssemblyName>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>C:\Users\J4y\OneDrive\Desktop\self signed certs\DewzasApps.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
